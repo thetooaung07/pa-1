@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     student
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _removeNL, symObjAddr: 0x0, symBinAddr: 0x1000035A8, symSize: 0x74 }
+  - { offsetInCU: 0xAE, offset: 0xAE, size: 0x8, addend: 0x0, symName: _removeNL, symObjAddr: 0x0, symBinAddr: 0x1000035A8, symSize: 0x74 }
+  - { offsetInCU: 0xE0, offset: 0xE0, size: 0x8, addend: 0x0, symName: _charCompare, symObjAddr: 0x74, symBinAddr: 0x10000361C, symSize: 0x34 }
+  - { offsetInCU: 0x116, offset: 0x116, size: 0x8, addend: 0x0, symName: _createStudent, symObjAddr: 0xA8, symBinAddr: 0x100003650, symSize: 0x238 }
+  - { offsetInCU: 0x18E, offset: 0x18E, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x2E0, symBinAddr: 0x100003888, symSize: 0x600 }
+...

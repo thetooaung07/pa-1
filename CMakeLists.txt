@@ -8,4 +8,6 @@ add_executable(test
         testwithcmd.c
         ContactMgmt.c
         lecture-test.c
-        studentReg.c)
+        studentReg.c
+        student.c
+)
