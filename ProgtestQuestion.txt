@@ -15,6 +15,8 @@ app - max_list
 Linked List + Cycling (4th term - 1/27/2022)
 - https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_27_1
 
+- Connection List 1
+https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_cviceni_12.1_zs2122
 
 Linked List - (5th term - 3/2/2022)
 - https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_03_2
