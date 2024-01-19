@@ -1,0 +1,34 @@
+app -https://drive.google.com/drive/folders/1WVcggpE_g-bmJa0jYEELvW4YvyX4nT13
+
+
+Parkoviste I + Connection List 1 (2019)
+-https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2019_10_1
+app - parkoviste.c
+app - connection_list.c
+
+Parkoviště II + search of Max (2019)
+-https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2019_17_1
+app - second_parkoviste
+app - max_list
+
+
+Linked List + Cycling (4th term - 1/27/2022)
+- https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_27_1
+
+
+Linked List - (5th term - 3/2/2022)
+- https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_03_2
+
+EAN Codes I
+- https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2020_09_1
+
+EAN Codes III
+- https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2020_23_1
+
+
+Adding numbers + Dominoes (Task 2)
+https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_13_1
+
+
+Finding the max + PC Load
+https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_05_1
