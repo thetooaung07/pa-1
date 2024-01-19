@@ -100,7 +100,7 @@ int main() {
         operation = inputLine[0];
 
         if (operation == 'R') {
-            
+
             if (rStudentSize >= rStudentCapacity) {
                 rStudentCapacity *= 2;
                 rStudent = (STUDENT *) realloc(rStudent, rStudentCapacity * sizeof(STUDENT));

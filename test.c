@@ -1,34 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<limits.h>
-#include<string.h>
 
+int rec(int x) {
+    if (x == 0) { return 0; }
+    return rec(x < 0 ? x + 1 : x - 1) - 1;
 
-
-typedef struct TStudent {
-    char * name;
-    char ** nameArr;
-    int index;
-
-} STUDENT;
+}
 
 
 int main() {
-    STUDENT *student;
-    student = (STUDENT * )malloc(10 *  sizeof(STUDENT));
 
-    printf("Students:\n");
-
-
-    while(getline)
-
-	if(!feof(stdin)) {
-			return EXIT_FAILURE;
+    int count = 0;
+    for (int i = 1; i <= 4454; i += i) {
+        for (int j = 0; j < i; ++j) {
+            count++;
+        }
     }
+    printf("count %d", count);
+    printf("%d", rec(133));
 
-
-
-
-    return EXIT_SUCCESS;
-
+    return 0;
 }
