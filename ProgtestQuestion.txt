@@ -6,6 +6,8 @@ Parkoviste I + Connection List 1 (2019)
 app - parkoviste.c
 app - connection_list.c
 
+// done
+
 Parkoviště II + search of Max (2019)
 -https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2019_17_1
 app - second_parkoviste
@@ -34,3 +36,6 @@ https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_13_1
 
 Finding the max + PC Load
 https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_zkouska_2022_05_1
+
+
+// merge sort functin linked list

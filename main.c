@@ -1,5 +1,3 @@
-// Connection list I
-
 #ifndef __PROGTEST__
 
 #include <stdio.h>
@@ -29,169 +27,222 @@ void deleteList(TITEM *l) {
     }
 }
 
-
-bool validate(TITEM *arr) {
-    // at least one digit
-    if (!arr) return false;
-    if (arr->m_Digit == '0' && arr->m_Next == NULL) return true;
-
-    // does not contain extra zeros in the end
-
-    // contains only from 0 to 9
-    while (arr) {
-        if (arr->m_Digit == '0' && arr->m_Next != NULL)return false;
-        if (arr->m_Digit < 48 || arr->m_Digit > 57) {
-            return false;
-        }
-        arr = arr->m_Next;
-    }
-
-    return true;
-}
-
-
-void print_arr(int *arr, int arrSize) {
-
-    printf("Arr - ");
-    for (int i = 0; i < arrSize; ++i) {
-        printf("%d,", arr[i]);
-    }
-    printf("\n");
-}
-
-void print_list(TITEM *list) {
-    while (list) {
-        printf("%c -", list->m_Digit);
-        list = list->m_Next;
-    }
-    printf("\n");
-}
-
-
 #endif /* __PROGTEST__ */
 
-TITEM *addList(TITEM *a, TITEM *b) {
+/* additional auxiliary functions */
 
 
-    TITEM *result = NULL;
-
-    int arrCapacity = 10;
-    int arrIndex = 0;
-    int *arr = (int *) malloc(10 * sizeof(int));
-
-    if (a == NULL || b == NULL) return NULL;
-
-
-    if (!validate(a) || !validate(b)) return NULL;
-
-
-    int carry = 0;
-
-
-    while (a || b || carry) {
-        int sum = carry;
-
-
-        if (a) {
-            sum += a->m_Digit - '0';
-            a = a->m_Next;
-        }
-
-
-        if (b) {
-            sum += b->m_Digit - '0';
-            b = b->m_Next;
-        }
-
-
-        carry = sum / 10;
-        sum = sum % 10;
-
-        arr[arrIndex] = sum;
-        arrIndex++;
-
-        if (arrIndex >= arrCapacity) {
-            arrCapacity *= 2;
-            arr = (int *) realloc(arr, arrCapacity * sizeof(int));
-        }
-    }
-
-
-    print_arr(arr, arrIndex);
-
-    for (int i = arrIndex; i > 0; i--) {
-        char digit = arr[i] + '0';
-
-        result = createItem(digit, result);
-    }
-
-    free(arr);
-    print_list(result);
-
-    return result;
+bool check_input(TITEM *node) {
+    if (node == NULL) return false;
+    if (node->m_Digit < '0' || node->m_Digit > '9') return false;
 }
 
+void reverse(TITEM *a) {
+
+}
+
+
+TITEM *maxOf(TITEM **x, int nr) {
+
+    if (x == NULL) {
+        return NULL;
+    }
+
+    if (nr == 1) {
+        return x[0];
+    }
+
+
+    for (int i = 0; i < nr; ++i) {
+        TITEM *curr = x[i];
+        if (curr == NULL) return NULL;
+        while (curr) {
+            if (curr->m_Digit < '0' || curr->m_Next > '9') {
+                return NULL;
+            }
+            curr = curr->m_Next;
+        }
+    }
+
+}
 
 #ifndef __PROGTEST__
 
 int main(int argc, char *argv[]) {
-    TITEM *a, *b, *res;
+    TITEM *a[5];
 
-    a = createItem('x', NULL);
-    b = createItem('3', NULL);
-    res = addList(a, b);
-    assert(res == NULL);
-    deleteList(a);
-    deleteList(b);
+    a[0] = createItem('4',
+                      createItem('3',
+                                 createItem('2',
+                                            createItem('1', NULL))));
+    a[1] = createItem('2',
+                      createItem('3',
+                                 createItem('4',
+                                            createItem('5', NULL))));
+    maxOf(a, 2);
+//    assert (maxOf(a, 2) == a[1]);
+//    deleteList(a[0]);
+//    deleteList(a[1]);
 
-    printf("assert 1.\n");
-
-    a = createItem('5',
-                   createItem('0',
-                              createItem('0', NULL)));
-    b = createItem('3', NULL);
-    res = addList(a, b);
-    assert(res == NULL);
-    deleteList(a);
-    deleteList(b);
-
-    printf("assert 2.\n");
-
-    a = createItem('3',
-                   createItem('4',
-                              createItem('5', NULL)));
-    b = createItem('0', NULL);
-    res = addList(a, b);
-    print_list(res);
-
-//    assert(res->m_Digit == '3');
-//    assert(res->m_Next->m_Digit == '4');
-//    assert(res->m_Next->m_Next->m_Digit == '5');
-//    assert(res->m_Next->m_Next->m_Next == NULL);
-    deleteList(res);
-    deleteList(a);
-    deleteList(b);
-
-    printf("assert 3.\n");
-
-    a = createItem('9',
-                   createItem('8',
-                              createItem('7',
-                                         createItem('8',
-                                                    createItem('8',
-                                                               createItem('8',
-                                                                          createItem('8', NULL)))))));
-    b = createItem('9',
-                   createItem('8',
-                              createItem('7',
-                                         createItem('8',
-                                                    createItem('8',
-                                                               createItem('8',
-                                                                          createItem('8', NULL)))))));
-    res = addList(a, b);
-    print_list(res);
-
-    printf("assert 4\n");
+//    a[0] = createItem('0',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('1', NULL))));
+//    a[1] = createItem('2',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('1', NULL))));
+//    a[2] = createItem('1',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('1', NULL))));
+//    a[3] = createItem('2',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('1',
+//                                                       createItem('0',
+//                                                                  createItem('0', NULL))))));
+//    assert (maxOf(a, 4) == a[1]);
+//    deleteList(a[0]);
+//    deleteList(a[1]);
+//    deleteList(a[2]);
+//    deleteList(a[3]);
+//
+//    a[0] = createItem('1',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('0',
+//                                                       createItem('0',
+//                                                                  createItem('0', NULL))))));
+//    a[1] = createItem('0',
+//                      createItem('0',
+//                                 createItem('1', NULL)));
+//    a[2] = createItem('1',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('0',
+//                                                       createItem('0',
+//                                                                  createItem('9', NULL))))));
+//    a[3] = createItem('0',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('0',
+//                                                       createItem('0',
+//                                                                  createItem('0',
+//                                                                             createItem('0',
+//                                                                                        createItem('0',
+//                                                                                                   createItem('0',
+//                                                                                                              createItem(
+//                                                                                                                      '0',
+//                                                                                                                      createItem(
+//                                                                                                                              '0',
+//                                                                                                                              createItem(
+//                                                                                                                                      '0',
+//                                                                                                                                      createItem(
+//                                                                                                                                              '0',
+//                                                                                                                                              createItem(
+//                                                                                                                                                      '0',
+//                                                                                                                                                      createItem(
+//                                                                                                                                                              '0',
+//                                                                                                                                                              NULL)))))))))))))));
+//    assert (maxOf(a, 4) == a[2]);
+//    deleteList(a[0]);
+//    deleteList(a[1]);
+//    deleteList(a[2]);
+//    deleteList(a[3]);
+//
+//    a[0] = createItem('0',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('0',
+//                                                       createItem('0',
+//                                                                  createItem('0',
+//                                                                             createItem('0',
+//                                                                                        createItem('0',
+//                                                                                                   createItem('0',
+//                                                                                                              createItem(
+//                                                                                                                      '0',
+//                                                                                                                      createItem(
+//                                                                                                                              '0',
+//                                                                                                                              createItem(
+//                                                                                                                                      '0',
+//                                                                                                                                      createItem(
+//                                                                                                                                              '0',
+//                                                                                                                                              createItem(
+//                                                                                                                                                      '0',
+//                                                                                                                                                      createItem(
+//                                                                                                                                                              '0',
+//                                                                                                                                                              createItem(
+//                                                                                                                                                                      '0',
+//                                                                                                                                                                      createItem(
+//                                                                                                                                                                              '0',
+//                                                                                                                                                                              createItem(
+//                                                                                                                                                                                      '0',
+//                                                                                                                                                                                      createItem(
+//                                                                                                                                                                                              '0',
+//                                                                                                                                                                                              createItem(
+//                                                                                                                                                                                                      '0',
+//                                                                                                                                                                                                      createItem(
+//                                                                                                                                                                                                              '0',
+//                                                                                                                                                                                                              createItem(
+//                                                                                                                                                                                                                      '1',
+//                                                                                                                                                                                                                      NULL))))))))))))))))))))));
+//    a[1] = createItem('1',
+//                      createItem('0',
+//                                 createItem('0',
+//                                            createItem('0',
+//                                                       createItem('0',
+//                                                                  createItem('0',
+//                                                                             createItem('0',
+//                                                                                        createItem('0',
+//                                                                                                   createItem('0',
+//                                                                                                              createItem(
+//                                                                                                                      '0',
+//                                                                                                                      createItem(
+//                                                                                                                              '0',
+//                                                                                                                              createItem(
+//                                                                                                                                      '0',
+//                                                                                                                                      createItem(
+//                                                                                                                                              '0',
+//                                                                                                                                              createItem(
+//                                                                                                                                                      '0',
+//                                                                                                                                                      createItem(
+//                                                                                                                                                              '0',
+//                                                                                                                                                              createItem(
+//                                                                                                                                                                      '0',
+//                                                                                                                                                                      createItem(
+//                                                                                                                                                                              '0',
+//                                                                                                                                                                              createItem(
+//                                                                                                                                                                                      '0',
+//                                                                                                                                                                                      createItem(
+//                                                                                                                                                                                              '0',
+//                                                                                                                                                                                              createItem(
+//                                                                                                                                                                                                      '0',
+//                                                                                                                                                                                                      createItem(
+//                                                                                                                                                                                                              '0',
+//                                                                                                                                                                                                              createItem(
+//                                                                                                                                                                                                                      '1',
+//                                                                                                                                                                                                                      NULL))))))))))))))))))))));
+//    assert (maxOf(a, 2) == a[1]);
+//    deleteList(a[0]);
+//    deleteList(a[1]);
+//
+//    a[0] = createItem('3',
+//                      createItem('2',
+//                                 createItem('1', NULL)));
+//    a[1] = createItem('6',
+//                      createItem('5',
+//                                 createItem('4', NULL)));
+//    a[2] = createItem('9',
+//                      createItem(' c',
+//                                 createItem('b',
+//                                            createItem('9',
+//                                                       createItem('9', NULL)))));
+//    assert (maxOf(a, 3) == NULL);
+//    assert (maxOf(a, 3) == NULL);
+//    deleteList(a[0]);
+//    deleteList(a[1]);
+//    deleteList(a[2]);
 
     return 0;
 }
