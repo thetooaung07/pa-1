@@ -1,11 +1,8 @@
-10 20
-+  0  0 987ABC21
-+  5  7 ABC1234
-+  9  11 XYZ987A
-+  5  8 129X98X
-- ABCDEF
-- XYZ987A
-- XYZ987A
-+  9  11 BACKSTAGE
-+  9  11 KLMN32112
-+  10  3 AAAA666
++ 10 FirstgearCo
++ 17 FirstgearCo
++ 45 FirstgearCo
++ 93 FirstgearCo
++ 40 FirstgearCo
++ 24 FirstgearCo
++ 20 FirstgearCo
+? 5:3,1
