@@ -6,6 +6,7 @@
 #include "string.h"
 #include "ctype.h"
 #include "stdbool.h"
+#include "limits.h"
 
 
 typedef struct Train {
@@ -20,8 +21,6 @@ bool validateTime(int hour, int min, int sec) {
         printf("error ");
         return false;
     }
-
-
     return true;
 }
 
@@ -79,8 +78,6 @@ Train *push_array(Train *tr, int *size, int *capacity, int dh, int dm, int ds, i
     tr[*size].convertedArv = convertToSec(ah, am, as);
     strcpy(tr[*size].companyName, companyName);
 
-    printf("Push to array %d\n", *size);
-
     (*size)++;
 
 
@@ -92,20 +89,40 @@ void print_result(Train *trA, int aSize, Train *trB, int bSize, int time) {
         return;
     }
 
-    Train *bestA, *bestB;
+    Train bestA, bestB;
+    int minDiff = INT_MAX;
+    int minBDiff = INT_MAX;
+    int found = 0;
 
 
     for (int i = 0; i < aSize; ++i) {
-        if (time <= trA[i].convertedDep) {
+        if (trA[i].convertedDep >= time && (trA[i].convertedArv - time) < minDiff) {
+            minDiff = trA[i].convertedArv - time;
             bestA = trA[i];
 
             for (int j = 0; j < bSize; ++j) {
-                if (trB->convertedDep >= bestA->convertedArv) {
+                if (trB[j].convertedDep >= bestA.convertedArv &&
+                    (trB[j].convertedArv - bestA.convertedDep) < minBDiff) {
+                    minBDiff = trB[j].convertedArv - bestA.convertedDep;
                     bestB = trB[j];
+                    found = 1;
                 }
             }
         }
     }
+
+    if (found == 0) {
+        printf("No Connection.\n");
+        return;
+    }
+
+    printf("A %d:%02d:%02d %d:%02d:%02d %s\n", bestA.dh, bestA.dm, bestA.ds, bestA.ah, bestA.am, bestA.as,
+           bestA.companyName);
+
+    printf("B %d:%02d:%02d %d:%02d:%02d %s\n", bestB.dh, bestB.dm, bestB.ds, bestB.ah, bestB.am, bestB.as,
+           bestB.companyName);
+
+
 }
 
 int arrivalCmp(const void *x, const void *y) {
@@ -137,9 +154,10 @@ int main() {
 
     while (scanf(" %c", &option) == 1) {
 
+
         if (inputComplete == true && (option == 'A' || option == 'B')) {
             printf("No more inputs accept.\n");
-            continue;
+            return 0;
         }
 
 
@@ -177,10 +195,10 @@ int main() {
             scanf("%d:%d:%d", &hour, &min, &sec);
             int time = convertToSec(hour, min, sec);
 
-            if (isSorted == 0) {
-                qsort(trA, aSize, sizeof(trA[0]), arrivalCmp);
-                qsort(trB, bSize, sizeof(trB[0]), arrivalCmp);
-            }
+//            if (isSorted == 0) {
+//                qsort(trA, aSize, sizeof(trA[0]), arrivalCmp);
+//                qsort(trB, bSize, sizeof(trB[0]), arrivalCmp);
+//            }
             print_result(trA, aSize, trB, bSize, time);
 
         }
