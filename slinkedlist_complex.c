@@ -7,6 +7,7 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
+
 // check if it is palindrome
 void check_palindrome(Node *headRef) {
     Node *curr = headRef;
@@ -53,7 +54,6 @@ void check_palindrome(Node *headRef) {
     free(arr);
 
 }
-
 
 int main() {
 

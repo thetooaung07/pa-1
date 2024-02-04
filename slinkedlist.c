@@ -6,33 +6,86 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
-// check if it is palindrome
-void check_palindrome(Node *headRef) {
-    Node *curr = headRef;
-    int capacity = 10;
-    int size = 0;
+void swapNodes(Node **headRef, int x, int y) {
+    if (x == y) { return; }
 
-    char *arr = (char *) malloc((capacity + 1));
+    // x and y are adjacent to each other
+//     - one of x or y is head node or tail node
+//     - none of x and y is either a head node or tail
 
+    // x and y are far apart
+//       - one of x and y are head or tail
+//       - not head or tail
 
-    while (curr) {
-        if (size >= capacity) {
-            capacity *= 2;
-            arr = (char *) realloc(arr, capacity);
-        }
-        arr[size] = curr->data;
-        size++;
-        curr = curr->next;
+    // x and y values does not present in list
+
+    Node *prevX = NULL, *currX = *headRef;
+    while (currX && currX->data != x) {
+        prevX = currX;
+        currX = currX->next;
     }
 
-
-    for (int i = 0; i < size; ++i) {
-
+    Node *prevY = NULL, *currY = *headRef;
+    while (currY && currY->data != x) {
+        prevY = currY;
+        currY = currY->next;
     }
 
+    if (currX == NULL || currY == NULL) {
+        return;
+    }
 
+    if (prevX != NULL) { prevX->next = currY; }
+    else *headRef = currY;
+
+    if (prevY != NULL) { prevY->next = currX; }
+    else *headRef = currX;
+
+    Node *temp = currY->next;
+    currY->next = currX->next;
+    currX->next = temp;
 }
 
+void reverse(Node **head) {
+    Node *prev = NULL;
+    Node *curr = *head;
+    Node *next = NULL;
+
+    if (!curr || !curr->next) {
+        return;
+    }
+
+    while (curr) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    *head = prev;
+}
+
+void remove_duplicate_from_unsorted_list(Node *head) {
+    Node *ptr1, *ptr2, *dup;
+    ptr1 = head;
+
+    if (ptr1 == NULL || ptr1->next == NULL) {
+        return;
+    }
+    while (ptr1 && ptr1->next) {
+        ptr2 = ptr1;
+
+        while (ptr2->next) {
+            if (ptr2->next->data == ptr1->data) {
+                dup = ptr2->next;
+                ptr2->next = ptr2->next->next;
+                free(dup);
+            } else {
+                ptr2 = ptr2->next;
+            }
+        }
+        ptr1 = ptr1->next;
+    }
+}
 
 // remove duplicates from the sorted linked list
 void remove_duplicates(Node *head) {
@@ -52,7 +105,6 @@ void remove_duplicates(Node *head) {
         }
     }
 }
-
 
 void delete_from_the_head(Node **head) {
     Node *temp = *head;
