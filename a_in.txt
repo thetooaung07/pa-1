@@ -1,8 +1,13 @@
-+ 10 FirstgearCo
-+ 17 FirstgearCo
-+ 45 FirstgearCo
-+ 93 FirstgearCo
-+ 40 FirstgearCo
-+ 24 FirstgearCo
-+ 20 FirstgearCo
-? 5:3,1
+A 08:00:00 09:30:00 RegioJet
+B 19:30:00 21:00:00 Ceske_drahy
+A 06:45:00 08:15:00 Arriva
+B 17:15:00 18:45: 00 RegioJet
+A 09:20:00 10:50:00 Ceske_drahy
+B 20:50:00 22:20:00 Arriva
+A 07:30:00 09:00:00 RegioJet
+B 18:00:00 19:30:00 Ceske_drahy
+A 08:10:00 09:40:00 Arriva
+B 18:40:00 20:10:00 RegioJet
+A 08:45:00 10:15:00 Ceske_drahy
+B 19:15:00 20:45:00 Arriva
+? 1:1:1
