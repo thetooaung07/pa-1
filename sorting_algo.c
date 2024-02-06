@@ -108,7 +108,6 @@ void print_arr(int arr[], int n) {
     printf("\n");
 }
 
-// Max Sub Array problem
 
 // O(n^3)
 int max_sum_brute_force(int *a, int n) {
@@ -177,73 +176,6 @@ int maxSum(int *a, int n) {
     return maxSum;
 }
 
-
-int factorialRec(int n) {
-    if (n <= 1) return 1;
-    return n * factorialRec(n - 1);
-}
-
-
-// gcd (recursive)
-int gcd(int a, int b) {
-    return b == 0 ? a : gcd(b, a % b);
-}
-
-int gcd_iter(int a, int b) {
-    int remainder;
-    while (b != 0) {
-        remainder = a % b;
-        a = b;
-        b = remainder;
-    }
-    return a;
-}
-
-int fibonaci(int n) {
-    if (n < 2) { return 1; }
-    return fibonaci(n - 1) + fibonaci(n - 2);
-}
-
-void factorize(int x) {
-    int d = 2;
-    while (d <= x) {
-        if (x % d == 0) {
-            printf("%d-", d);
-            factorize(x / d);
-            return;
-        } else d++;
-    }
-}
-
-void merge(int *a, int na, int *b, int nb, int *c) {
-    int ia = 0;
-    int ib = 0;
-    int ic = 0;
-    while (ia < na && ib < nb) {
-        if (a[ia] < b[ib]) {
-            c[ic] = a[ia];
-            ic++;
-            ia++;
-        } else {
-            c[ic] = b[ib];
-            ic++;
-            ib++;
-        }
-        while (ia < na) {
-            c[ic] = a[ia];
-            ia++;
-            ic++;
-
-        }
-        while (ib < nb) {
-            c[ic] = b[ib];
-            ic++;
-            ib++;
-        }
-    }
-}
-
-
 // sorting
 int main() {
     int arr[] = {2, 4, 3, 6, 10, 55, 22};
@@ -269,6 +201,4 @@ int main() {
     insertion_sort(arr, arrSize);
     print_arr(arr, arrSize);
 
-
-    factorize(40);
 }
