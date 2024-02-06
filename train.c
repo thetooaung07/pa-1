@@ -31,7 +31,8 @@ bool validateTimeDuration(int dh, int dm, int ds, int ah, int am, int as) {
     else return true;
 }
 
-bool checkInput(int dh, int dm, int ds, int ah, int am, int as, char companyName[4097]) {
+bool checkInput(int dh, int dm, int ds, int ah, int am, int as,
+                char companyName[4097]) {
 
     int nameL = strlen(companyName);
 
@@ -41,7 +42,8 @@ bool checkInput(int dh, int dm, int ds, int ah, int am, int as, char companyName
     }
 
     for (int i = 0; i < nameL; ++i) {
-        if (companyName[i] != ' ' && (!isalpha(companyName[i]) && companyName[i] != '_')) {
+        if (companyName[i] != ' ' &&
+            (!isalpha(companyName[i]) && companyName[i] != '_')) {
             printf("x name error\n");
             return false;
         }
@@ -59,8 +61,10 @@ int convertToSec(int hour, int min, int sec) {
     return (hour * 3600) + (min * 60) + sec;
 }
 
-Train *push_array(Train *tr, int *size, int *capacity, int dh, int dm, int ds, int ah, int am, int as,
-                  char companyName[4097]) {
+Train *
+push_array(Train *tr, int *size, int *capacity, int dh, int dm, int ds, int ah,
+           int am, int as,
+           char companyName[4097]) {
 
 
     if (*size >= *capacity) {
@@ -96,7 +100,8 @@ void print_result(Train *trA, int aSize, Train *trB, int bSize, int time) {
 
 
     for (int i = 0; i < aSize; ++i) {
-        if (trA[i].convertedDep >= time && (trA[i].convertedArv - time) < minDiff) {
+        if (trA[i].convertedDep >= time &&
+            (trA[i].convertedArv - time) < minDiff) {
             minDiff = trA[i].convertedArv - time;
             bestA = trA[i];
 
@@ -116,10 +121,12 @@ void print_result(Train *trA, int aSize, Train *trB, int bSize, int time) {
         return;
     }
 
-    printf("A %d:%02d:%02d %d:%02d:%02d %s\n", bestA.dh, bestA.dm, bestA.ds, bestA.ah, bestA.am, bestA.as,
+    printf("A %d:%02d:%02d %d:%02d:%02d %s\n", bestA.dh, bestA.dm, bestA.ds,
+           bestA.ah, bestA.am, bestA.as,
            bestA.companyName);
 
-    printf("B %d:%02d:%02d %d:%02d:%02d %s\n", bestB.dh, bestB.dm, bestB.ds, bestB.ah, bestB.am, bestB.as,
+    printf("B %d:%02d:%02d %d:%02d:%02d %s\n", bestB.dh, bestB.dm, bestB.ds,
+           bestB.ah, bestB.am, bestB.as,
            bestB.companyName);
 
 
@@ -128,14 +135,13 @@ void print_result(Train *trA, int aSize, Train *trB, int bSize, int time) {
 int arrivalCmp(const void *x, const void *y) {
     Train *t1 = (Train *) x;
     Train *t2 = (Train *) y;
-
     return (t1->convertedArv - t2->convertedArv);
 }
 
 
 int main() {
 
-    printf("Start.\n");
+    printf("Start:\n");
 
     char option = '\0';
     bool inputComplete = false;
@@ -157,6 +163,8 @@ int main() {
 
         if (inputComplete == true && (option == 'A' || option == 'B')) {
             printf("No more inputs accept.\n");
+            free(trA);
+            free(trB);
             return 0;
         }
 
@@ -164,7 +172,8 @@ int main() {
         if (option == 'A') {
             int dh, dm, ds, ah, am, as;
             char companyName[4097];
-            if (scanf("%d:%d:%d %d:%d:%d %4096[^\n]", &dh, &dm, &ds, &ah, &am, &as, companyName) != 7) {
+            if (scanf("%d:%d:%d %d:%d:%d %4096[^\n]", &dh, &dm, &ds, &ah, &am,
+                      &as, companyName) != 7) {
                 printf("x Invalid scanf\n");
             }
 
@@ -174,12 +183,14 @@ int main() {
                 continue;
             }
 
-            trA = push_array(trA, &aSize, &aCapacity, dh, dm, ds, ah, am, as, companyName);
+            trA = push_array(trA, &aSize, &aCapacity, dh, dm, ds, ah, am, as,
+                             companyName);
 
         } else if (option == 'B') {
             int dh, dm, ds, ah, am, as;
             char companyName[4097];
-            if (scanf("%d:%d:%d %d:%d:%d %4096[^\n]", &dh, &dm, &ds, &ah, &am, &as, companyName) != 7) {
+            if (scanf("%d:%d:%d %d:%d:%d %4096[^\n]", &dh, &dm, &ds, &ah, &am,
+                      &as, companyName) != 7) {
                 printf("x Invalid scanf\n");
             }
 
@@ -188,7 +199,8 @@ int main() {
                 continue;
             }
 
-            trB = push_array(trB, &bSize, &bCapacity, dh, dm, ds, ah, am, as, companyName);
+            trB = push_array(trB, &bSize, &bCapacity, dh, dm, ds, ah, am, as,
+                             companyName);
         } else if (option == '?') {
             inputComplete = true;
             int hour, min, sec;
@@ -200,13 +212,16 @@ int main() {
 //                qsort(trB, bSize, sizeof(trB[0]), arrivalCmp);
 //            }
             print_result(trA, aSize, trB, bSize, time);
-
         }
     }
 
     if (!feof(stdin)) {
+        free(trA);
+        free(trB);
         return 0;
     }
 
+    free(trA);
+    free(trB);
     return EXIT_SUCCESS;
 }
