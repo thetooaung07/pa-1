@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <ctype.h>
 
 
 typedef struct TStudent {
@@ -52,7 +51,7 @@ void createStudent(STUDENT *student, const int *studentSize, char *inputLine) {
 
         if (tokenCount >= nameArrCapacity) {
             nameArrCapacity *= 2;
-            student[*studentSize].nameArr = (char *) realloc(
+            student[*studentSize].nameArr = (char **) realloc(
                     student[*studentSize].nameArr,
                     nameArrCapacity * sizeof(char *));
         }
@@ -101,6 +100,15 @@ int main() {
 
         if (operation == 'R') {
 
+            if(inputLine [3] == ' '){
+                printf("Name Empty\n");
+                free(inputLine);
+                freeStudent(rStudent, &rStudentSize);
+                freeStudent(pStudent, &pStudentSize);
+                free(pStudent);
+                free(rStudent);
+                return 0;
+            }
             if (rStudentSize >= rStudentCapacity) {
                 rStudentCapacity *= 2;
                 rStudent = (STUDENT *) realloc(rStudent, rStudentCapacity * sizeof(STUDENT));

@@ -1,2 +1,22 @@
+student registration => done
+progtest
+hw5 5=>done | 3
+hw6 5 | 3
+hw7 5 | 3
+hw8 5 | 3
+
+
+merge sort + qsort
+
+
+domino
+cycling
+cogwheel *
+
+
+
 q_sort
-+  all sorting algorithms
+https://fit-wiki.cz/%C5%A1kola/p%C5%99edm%C4%9Bty/bi-pa1/pa1_razeni_studentu
+
+big-o cheat sheat
+https://www.bigocheatsheet.com/
