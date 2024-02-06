@@ -215,6 +215,7 @@ void factorize(int x) {
     }
 }
 
+// ordinary merge function
 void merge(int *a, int na, int *b, int nb, int *c) {
     int ia = 0;
     int ib = 0;
@@ -243,6 +244,45 @@ void merge(int *a, int na, int *b, int nb, int *c) {
     }
 }
 
+
+// merge sort => merge
+void mergeS(int *src, int *dst, int l, int r, int rEnd) {
+    int lEnd = r - 1, i = l;
+    while (l <= lEnd && r <= rEnd) {
+        dst[i++] = (src[l] < src[r]) ? src[l++] : src[r++];
+    }
+    while (l <= lEnd) dst[i++] = src[l++];
+    while (r <= rEnd) dst[i++] = src[r++];
+}
+
+void mergeSortRec(int *a, int *temp, int l, int r) {
+    int mid;
+    if (l == r) return;
+    mid = l + (r - l) / 2;
+    mergeSortRec(a, temp, l, mid);
+    mergeSortRec(a, temp, mid + 1, r);
+    mergeS(a, temp, l, mid + 1, r);
+    for (int i = l; i <= r; ++i) {
+        a[i] = temp[i];
+    }
+}
+
+//int intCmp(const int *a, const int *b) {
+//    return (*b < *a) - (*a < *b);
+//}
+//
+//void qsortFunc() {
+//    int *arr;
+//    int n; // numberof element in array
+//
+//    qsort(arr, n, sizeof(int), (int (*)(const void *, const void *)) intCmp);
+//}
+
+void mergeSort(int *a, int n) {
+    int *temp = (int *) malloc(n * sizeof(int));
+    mergeSortRec(a, temp, 0, n - 1);
+    free(temp);
+}
 
 // sorting
 int main() {
