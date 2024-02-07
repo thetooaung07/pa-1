@@ -12,11 +12,27 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
+
+void reverse_dd(Node **head) {
+    Node *temp;
+    Node *curr = *head;
+
+    while (curr != NULL) {
+        temp = curr->prev;
+        curr->prev = curr->next;
+        curr->next = temp;
+        curr = curr->prev;
+    }
+
+    if (temp != NULL) {
+        *head = temp->prev;
+    }
+}
+
 void insert_after_target_node() {}
 
 
 void insert_front(Node **head, int value) {
-
 
     Node *newNode = (Node *) malloc(sizeof(Node));
     Node *curr = *head;

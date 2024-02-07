@@ -27,15 +27,16 @@ int charCompare(char **a, char **b) {
 void createStudent(STUDENT *student, const int *studentSize, char *inputLine) {
 
     size_t nameLength = strlen(inputLine + 3);
-    student[*studentSize].name = (char *) malloc((nameLength + 1) * sizeof(char));
+    student[*studentSize].name = (char *) malloc(
+            (nameLength + 1) * sizeof(char));
     strcpy(student[*studentSize].name, inputLine + 3);
 
     student[*studentSize].isPresent = false;
     student[*studentSize].isRegister = false;
 
     size_t nameArrCapacity = 3;
-    student[*studentSize].nameArr = (char **) malloc(nameArrCapacity * sizeof(char *));
-
+    student[*studentSize].nameArr = (char **) malloc(
+            nameArrCapacity * sizeof(char *));
 
     char *tempLine = strdup(inputLine + 3);
     char *token;
@@ -43,7 +44,8 @@ void createStudent(STUDENT *student, const int *studentSize, char *inputLine) {
     int tokenCount = 0;
 
     while (token != NULL) {
-        student[*studentSize].nameArr[tokenCount] = (char *) malloc((strlen(token) + 1) * sizeof(char));
+        student[*studentSize].nameArr[tokenCount] = (char *) malloc(
+                (strlen(token) + 1) * sizeof(char));
         strcpy(student[*studentSize].nameArr[tokenCount], token);
 
         token = strtok(NULL, " ");
@@ -100,7 +102,7 @@ int main() {
 
         if (operation == 'R') {
 
-            if(inputLine [3] == ' '){
+            if (inputLine[3] == ' ') {
                 printf("Name Empty\n");
                 free(inputLine);
                 freeStudent(rStudent, &rStudentSize);
@@ -111,7 +113,8 @@ int main() {
             }
             if (rStudentSize >= rStudentCapacity) {
                 rStudentCapacity *= 2;
-                rStudent = (STUDENT *) realloc(rStudent, rStudentCapacity * sizeof(STUDENT));
+                rStudent = (STUDENT *) realloc(rStudent, rStudentCapacity *
+                                                         sizeof(STUDENT));
             }
             createStudent(rStudent, &rStudentSize, inputLine);
             rStudent[rStudentSize].isRegister = true;
@@ -120,7 +123,8 @@ int main() {
 
             if (pStudentSize >= pStudentCapacity) {
                 pStudentCapacity *= 2;
-                pStudent = (STUDENT *) realloc(pStudent, pStudentCapacity * sizeof(STUDENT));
+                pStudent = (STUDENT *) realloc(pStudent, pStudentCapacity *
+                                                         sizeof(STUDENT));
             }
             createStudent(pStudent, &pStudentSize, inputLine);
             pStudent[pStudentSize].isPresent = true;
@@ -140,13 +144,16 @@ int main() {
             printf("j loop - %s\n", pStudent[j].name);
             bool samePerson = false;
 
-            if (rStudent[i].nameCount != pStudent[j].nameCount || pStudent[j].isRegister == true) {
+            if (rStudent[i].nameCount != pStudent[j].nameCount ||
+                pStudent[j].isRegister == true) {
                 samePerson = false;
 
             } else {
                 for (int k = 0; k < rStudent[i].nameCount; ++k) {
-                    printf("Strcasecmp check - %s vs %s \n", rStudent[i].nameArr[k], pStudent[j].nameArr[k]);
-                    if (strcasecmp(rStudent[i].nameArr[k], pStudent[j].nameArr[k]) == 0) {
+                    printf("Strcasecmp check - %s vs %s \n",
+                           rStudent[i].nameArr[k], pStudent[j].nameArr[k]);
+                    if (strcasecmp(rStudent[i].nameArr[k],
+                                   pStudent[j].nameArr[k]) == 0) {
                         samePerson = true;
                     } else {
                         samePerson = false;
@@ -158,12 +165,14 @@ int main() {
 
 
             if (samePerson == true) {
-                printf("Same Person  - %s %s\n", rStudent[i].name, pStudent[j].name);
+                printf("Same Person  - %s %s\n", rStudent[i].name,
+                       pStudent[j].name);
                 rStudent[i].isPresent = true;
                 pStudent[j].isRegister = true;
                 break;
             } else {
-                printf("Different Person  - %s %s \n", rStudent[i].name, pStudent[j].name);
+                printf("Different Person  - %s %s \n", rStudent[i].name,
+                       pStudent[j].name);
             }
 
         }

@@ -150,15 +150,15 @@ void delete_from_the_tail(Node **head) {
     secondLast->next = NULL;
 }
 
-void insert_in_somewhere(Node *prevNode, int value) {
-    // check if given node exists or not -> exit
-    if (!prevNode) { return; }
-
-    Node *newNode = (Node *) malloc(sizeof(Node));
-    newNode->data = value;
-    newNode->next = prevNode->next;
-    prevNode->next = newNode;
-}
+//void insert_in_somewhere(Node *prevNode, int value) {
+//    // check if given node exists or not -> exit
+//    if (!prevNode) { return; }
+//
+//    Node *newNode = (Node *) malloc(sizeof(Node));
+//    newNode->data = value;
+//    newNode->next = prevNode->next;
+//    prevNode->next = newNode;
+//}
 
 void insert_at_the_tail(Node **headRef, int value) {
     Node *newNode = (Node *) malloc(sizeof(Node));

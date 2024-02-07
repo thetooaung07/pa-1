@@ -1,4 +1,5 @@
 student registration => done
+
 progtest
 hw5 5=>done | 3
 hw6 5 | 3
@@ -6,12 +7,14 @@ hw7 5 | 3
 hw8 5 | 3
 
 
-merge sort + qsort
+merge sort + qsort done*
 
 
-domino
+dd linked list - reverse
+
+domino * ||   arr1[i] ==  arr2[(i+rotation) % size1]
 cycling
-cogwheel *
+cogwheel  done*
 
 
 
